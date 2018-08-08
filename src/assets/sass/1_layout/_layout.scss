@@ -1,0 +1,35 @@
+@charset "UTF-8";
+// レイアウト用css for Layout
+// Can use id, If you use class Please adding prefix .l-
+
+/*------------------------------------------------------------
+	Layout
+------------------------------------------------------------*/
+body {
+}
+#wrapper {
+}
+.l-container {
+}
+.l-content{
+}
+.pc-only{
+	@include breakpoint{
+		display: none !important;
+	}
+}
+.sp-only{
+	@include min-breakpoint{
+		display: none !important;
+	}
+	@include breakpoint{
+		display: block;
+	}
+}
+img{
+	@include breakpoint{
+		max-width: 100%;
+		height: auto;
+		margin: 0 auto;
+	}
+}

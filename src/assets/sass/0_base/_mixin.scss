@@ -1,0 +1,92 @@
+@charset "UTF-8";
+//
+//  mixin,extendで使用する
+//  using mixin and extend
+//
+
+// 文字サイズ
+// font size
+@mixin fs($fontSize, $baseFontSize:10){
+	font-size: #{$fontSize / $baseFontSize}em;
+}
+// example:
+// @include fs(15);
+// @include fs(20, 13);
+// ※第二引数のサイズをベースとして20pxになるよう計算された値が出力される
+
+//%にしたい場合は、
+//@mixin fs($fontSize, $baseFontSize:10){
+//font-size: percentage($fontSize / $baseFontSize);
+//}
+//に変更
+
+// clearfix（float解除）
+%cf {
+	@if $support-ie6 or $support-ie7 {
+		*zoom: 1;
+	}
+	&:after {
+		display: block;
+		clear: both;
+		content: "";
+	}
+}
+// example:
+// @extend %cf;
+
+// clearfix（float解除）
+@mixin cf{
+	@if $support-ie6 or $support-ie7 {
+		*zoom: 1;
+	}
+	&:after {
+		display: block;
+		clear: both;
+		content: "";
+	}
+}
+@mixin breakpoint {
+	@media screen and (max-width: #{$breakpoint}){
+		@content;
+	}
+}
+@mixin min-breakpoint {
+	@media screen and (min-width: #{$breakpoint}){
+		@content;
+	}
+}
+@mixin transition(){
+	transition: 0.3s ease-out;
+}
+@mixin border-radius($varBorder){
+	border-radius: $varBorder;
+}
+@mixin border($border-direction: "border", $var-width: $borderWidth, $var-color: $borderColor){
+	@if($border-direction == "border"){
+		border: $var-width solid $var-color;
+	}
+	@if($border-direction == "top"){
+		border-top: $var-width solid $var-color;
+	}
+	@if($border-direction == "left"){
+		border-left: $var-width solid $var-color;
+	}
+	@if($border-direction == "right"){
+		border-right: $var-width solid $var-color;
+	}
+	@if($border-direction == "bottom"){
+		border-bottom: $var-width solid $var-color;
+	}
+	@if($border-direction == "top-left"){
+		border-top: $var-width solid $var-color;
+		border-left: $var-width solid $var-color;
+	}
+	@if($border-direction == "bottom-right"){
+		border-bottom: $var-width solid $var-color;
+		border-right: $var-width solid $var-color;
+	}
+	@if($border-direction == "none"){
+		border: none;
+	}
+
+}
